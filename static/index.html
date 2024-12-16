@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iksha Chatbot</title>
+    <link href="/static/output.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom scrollbar styles */
+        #chatbotMessages::-webkit-scrollbar {
+            width: 6px;
+        }
+        #chatbotMessages::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        #chatbotMessages::-webkit-scrollbar-thumb {
+            background: #008080;
+            border-radius: 3px;
+        }
+        #chatbotMessages::-webkit-scrollbar-thumb:hover {
+            background: #1E90FF;
+        }
+    </style>
+</head>
+<body class="bg-[#0a0909] flex items-center justify-center min-h-screen">
+    <!-- Chat Icon -->
+    <div id="chatIcon" class="fixed bottom-6 right-6 bg-[#1E90FF] text-white p-4 rounded-full shadow-lg cursor-pointer hover:bg-[#008080] transition-colors">
+        <img src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png" alt="Iksha AI" class="w-10 h-10 rounded-full border-2 border-white">
+    </div>
+
+    <!-- Chatbot Interface -->
+    <div id="chatbot" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50" style="display: none;">
+        <div class="bg-white w-full max-w-md rounded-lg shadow-xl overflow-hidden flex flex-col" style="height: 530px;">
+            <div class="bg-gradient-to-r from-[#1E90FF] to-[#008080] p-4 flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <img src="https://i.ibb.co/fSNP7Rz/icons8-chatgpt-512.png" alt="Iksha AI" class="w-10 h-10 rounded-full border-2 border-white">
+                    <div>
+
+                        <h2 class="text-white font-bold">Iksha AI</h2>
+                        <p class="text-[#00FFFF] text-xs">Always here to help</p>
+                    </div>
+                </div>
+                
+                <button id="closeChat" class="text-white hover:text-[#00FFFF] transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Loading Bar -->
+            <div id="loadingBarContainer" class="w-full bg-[#F8F8F8] h-1" style="display: none;">
+                <div id="loadingBar" class="bg-[#1E90FF] h-full w-0 transition-all duration-300 ease-out"></div>
+            </div>
+
+            <!-- Chatbot Messages -->
+            <div id="chatbotMessages" class="flex-grow overflow-y-auto p-4 space-y-4"></div>
+            <button id="clearChat" class="text-[#008080] text-xs justify-end flex no-underline">Clear Chat</button>
+
+            <!-- Clear Chat Button -->
+            <!-- <div class="px-4 py-2 bg-[#F8F8F8] border-t border-[#056b6b]"> -->
+                <!-- <button id="clearChat" class="text-[#008080] text-sm justify-end flex">Clear Chat</button> -->
+            <!-- </div> -->
+
+            <!-- Follow-up Question -->
+            <div id="followUpContainer" class="p-2 bg-[#F8F8F8] border-t border-[#056b6b]" style="display: none;">
+                <p class="text-sm font-semibold mb-2 text-[#056b6b]">Do you want to know more?</p>
+                <div class="flex space-x-2">
+                    <button id="yesButton" class="bg-[#008080] text-white px-4 py-2 rounded-lg text-sm hover:bg-[#1E90FF] transition-colors">Yes</button>
+                    <button id="noButton" class="bg-[#F8F8F8] text-[#008080] px-4 py-2 rounded-lg text-sm border border-[#008080] hover:bg-[#008080] hover:text-white transition-colors">No</button>
+                </div>
+            </div>
+
+            <!-- Suggestions Container -->
+            <div id="suggestionsContainer" class="p-1 bg-[#F8F8F8]" style="display: none;">
+                <p class="text-sm font-semibold text-[#056b6b]">Suggested questions:</p>
+                <div id="suggestionButtons" class="grid grid-cols-1 gap-1"></div>
+            </div>
+
+            <!-- User Input -->
+            <form id="messageForm" class="border-t border-[#008080] p-4 flex space-x-2">
+                <input type="text" id="userInput" class="flex-1 p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#1E90FF]" placeholder="Type your message...">
+                <button type="submit" class="bg-[#1E90FF] text-white p-2 rounded-lg hover:bg-[#008080] transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="static/script.js"></script>
+</body>
+</html>
+
